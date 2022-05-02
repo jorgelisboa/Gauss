@@ -16,3 +16,11 @@ System to solve systems of linear equations with any number of equations by the 
   | 2 | 3 | 0 | 16 |
   | 0 | 3 | 2 | 28 |
   - Divide the 
+
+
+### Workflow
+- validateMatriz(matriz)
+- diagonalHasZero(matriz, lenght(matriz))
+- if diagonalHasZero() { changeLines(matriz, matrizLine) } else { divideLine(matrizLine, divider) }
+- startLoop()
+- divideLine()
