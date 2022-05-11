@@ -13,29 +13,35 @@ def hasZeroInDiagonal (matriz):
     
 def setOneInMainDiagonal (line,matriz):
     divisor=matriz[line][line]
-    col=0
-    while col<=len(matriz):
-        matriz[line][col]/=divisor
-        col+=1
+    matriz[line][line]/=divisor
+
 
 # APP STARTS HERE #   
 def startApp():
     # Check if is possible to resolve the system
     if isSystemPossible():
         if hasZeroInDiagonal(matriz):
-            changeLines(matriz)
+            while hasZeroInDiagonal(matriz):
+                changeLines(matriz)
+            resolveSystem(matriz)
+            showMatriz(matriz)
         else:
             resolveSystem(matriz)
             showMatriz(matriz)
     else:
         print("This system is not possible to be resolved")
 
+def changeLines(matriz):
+   matriz.insert(0, matriz[len(matriz) - 1])
+   matriz.pop(matriz[len(matriz) - 1])
+      
 def resolveSystem(matriz):
     currentLine = 0
-    while currentLine < len(matriz):
-        setOneInMainDiagonal(matriz, currentLine)
+    while currentLine <= len(matriz):
+        setOneInMainDiagonal(currentLine, matriz)
         setZeroInColumn(matriz, currentLine)
-
+        currentLine += 1
+        
 def showMatriz(matriz):
     counter = 0
     while counter < len(matriz):
