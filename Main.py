@@ -32,8 +32,8 @@ def startApp():
         print("This system is not possible to be resolved")
 
 def changeLines(matriz):
-   matriz.insert(0, matriz[len(matriz) - 1])
-   matriz.pop(matriz[len(matriz) - 1])
+    matriz.insert(0, matriz[-1])
+    matriz.pop() #Without argument, it takes -1 as default
       
 def resolveSystem(matriz):
     currentLine = 0
