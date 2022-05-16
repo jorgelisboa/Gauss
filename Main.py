@@ -12,8 +12,12 @@ def hasZeroInDiagonal (matriz):
     return qtdDeZeros>0
     
 def setOneInMainDiagonal (line,matriz):
-    divisor=matriz[line][line]
-    matriz[line][line]/=divisor
+    divisor=matriz[line][line] # Get our main diagonal number
+    col=0
+    while col<=len(matriz): # Will divide each item from our line for our main diagonal number
+        matriz[line][col]/=divisor
+        print(matriz)
+        col+=1
 
 
 # APP STARTS HERE #   
