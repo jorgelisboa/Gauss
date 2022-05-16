@@ -1,4 +1,4 @@
-# Variables
+# Our matriz
 matriz = [[2,3,5,1], [9,2,6,7], [3,6,2,9]]
 
 # Check if it is possible
@@ -10,7 +10,8 @@ def hasZeroInDiagonal (matriz):
             qtdDeZeros+=1
         posicao+=1
     return qtdDeZeros>0
-    
+  
+# Make the logic: make the main diagonal number became 1, and after this, set zero in all the column
 def setOneInMainDiagonal (line,matriz):
     divisor=matriz[line][line] # Get our main diagonal number
     col=0
