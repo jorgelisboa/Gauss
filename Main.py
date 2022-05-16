@@ -37,7 +37,7 @@ def changeLines(matriz):
       
 def resolveSystem(matriz):
     currentLine = 0
-    while currentLine <= len(matriz):
+    while currentLine < len(matriz):
         setOneInMainDiagonal(currentLine, matriz)
         setZeroInColumn(matriz, currentLine)
         currentLine += 1
