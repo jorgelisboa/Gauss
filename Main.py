@@ -53,18 +53,10 @@ def isMatrizValida(matriz):
             compareLine +=1
         currentLine +=1
 
-
 ##################################################################################################
 
-
-
-
-
-
-
-
 # Our matriz
-matriz = [[2,3,5,1], [9,2,6,7], [3,6,2,9]]
+
 
 # Check if it is possible
 def hasZeroInDiagonal (matriz):
@@ -82,39 +74,49 @@ def setOneInMainDiagonal (line,matriz):
     col=0
     while col<=len(matriz): # Will divide each item from our line for our main diagonal number
         matriz[line][col]/=divisor
-        print(matriz)
+        print("setOneInMainDiagonal: "+str(matriz))
         col+=1
+    return matriz
 
 
 # APP STARTS HERE #   
-def startApp():
-    # Check if is possible to resolve the system
-    if isSystemPossible():
-        if hasZeroInDiagonal(matriz):
-            while hasZeroInDiagonal(matriz):
-                changeLines(matriz)
-            resolveSystem(matriz)
-            showMatriz(matriz)
-        else:
-            resolveSystem(matriz)
-            showMatriz(matriz)
-    else:
-        print("This system is not possible to be resolved")
 
 def changeLines(matriz):
-    matriz.insert(0, matriz[-1])
-    matriz.pop() #Without argument, it takes -1 as default
+    counter = 0
+    ordemMatriz = comoSeLivrarDeZerosNaDiagonal(matriz)
+    matrizZerada = []
+    while counter < len(ordemMatriz[1]):
+        matrizZerada.append(matriz[ordemMatriz[1][counter]])
+        counter+=1
+    return matrizZerada
       
 def resolveSystem(matriz):
     currentLine = 0
     while currentLine < len(matriz):
         setOneInMainDiagonal(currentLine, matriz)
-        setZeroInColumn(matriz, currentLine)
+        #setZeroInColumn(matriz, currentLine)
         currentLine += 1
         
 def showMatriz(matriz):
     counter = 0
     while counter < len(matriz):
         print(matriz[[counter]])
-
-showMatriz(matriz)
+        
+# Check if is possible to resolve the system
+matriz = [[0,3,2,28], [4,0,2,24], [2,3,0,16]]
+def startApp(matriz):
+    isSystemPossible = True
+    if isSystemPossible:
+        if hasZeroInDiagonal(matriz):
+            while hasZeroInDiagonal(matriz):
+                changeLines(matriz)
+                matriz = changeLines(matriz)
+                resolveSystem(matriz)
+                #showMatriz(matriz)
+        else:
+            resolveSystem(matriz)
+            #showMatriz(matriz)
+    else:
+        print("This system is not possible to be resolved")
+            
+startApp(matriz)
