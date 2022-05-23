@@ -53,18 +53,10 @@ def isMatrizValida(matriz):
             compareLine +=1
         currentLine +=1
 
-
 ##################################################################################################
 
-
-
-
-
-
-
-
 # Our matriz
-matriz = [[2,3,5,1], [9,2,6,7], [3,6,2,9]]
+matriz = [[0,3,5,1], [9,0,6,7], [3,6,0,9]]
 
 # Check if it is possible
 def hasZeroInDiagonal (matriz):
@@ -101,9 +93,14 @@ def startApp():
     else:
         print("This system is not possible to be resolved")
 
-def changeLines(matriz):
-    matriz.insert(0, matriz[-1])
-    matriz.pop() #Without argument, it takes -1 as default
+def changeLines(ordemMatriz, matriz):
+    counter = 0
+    matrizZerada = []
+    while counter < len(ordemMatriz[1]):
+        matrizZerada.append(matriz[ordemMatriz[1][counter]])
+        counter+=1
+    matriz = []
+    matriz = matrizZerada
       
 def resolveSystem(matriz):
     currentLine = 0
@@ -117,4 +114,7 @@ def showMatriz(matriz):
     while counter < len(matriz):
         print(matriz[[counter]])
 
-showMatriz(matriz)
+print(matriz)
+matrizNovinha = comoSeLivrarDeZerosNaDiagonal(matriz)
+changeLines(matrizNovinha, matriz)
+print(matriz)
