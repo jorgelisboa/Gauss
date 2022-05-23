@@ -122,7 +122,7 @@ def isMatrizValida(matriz):
 def negativeLine(lineMatriz):
     counter = 0
     while counter < len(lineMatriz):
-        lineMatriz[counter] = lineMatriz[counter]-1
+        lineMatriz[counter] = lineMatriz[counter]*-1
         counter += 1
     return lineMatriz
 
