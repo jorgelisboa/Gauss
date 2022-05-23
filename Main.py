@@ -14,6 +14,9 @@ def carregaMatriz (nomeArq):
     arq.close()
     return ret
 
+def copyMatriz(matriz):
+#loop
+
 # função auxiliar  recursiva que, de fato, gera as permutacoes
 # NÃO USE DIRETAMENTE ESTA FUNÇÃO; USE A FUNÇÃO permutacoes
 # recebe uma lista com os valores a serem permutados (linha),
