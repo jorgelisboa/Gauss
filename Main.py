@@ -38,25 +38,53 @@ def comoSeLivrarDeZerosNaDiagonal (m):
 # "Divide" os pares de linha - (Já tá fazendo os pares, falta dividor)
 
 def isMatrizValida(matriz):
-    #todas as linhas com a mesma quantidade de coluna  
+    #todas as linhas com a mesma quantidade de coluna
     currentLine = 0
     compareLine = 0
     currentColumn = 0
+    resultLine = [] 
+    isValida = True
     while currentLine < len(matriz): #percorre as linhas
         compareLine = currentLine + 1
         while compareLine < len(matriz):
             currentColumn = 0
+            resultLine = []
             while currentColumn < (len(matriz[currentLine])-1): # percorre coluna da linha atual
-                if (currentLine < (len(matriz)-1)):
-                    print('repedição: ', currentLine, ' linha ', matriz[currentLine][currentColumn],'linha', compareLine, " ", matriz[compareLine][currentColumn])
+                if matriz[compareLine][currentColumn] == 0: 
+                    result = 999999
+                else:
+                    result = matriz[currentLine][currentColumn] / matriz[compareLine][currentColumn]
+                print(currentLine, ' linha ', matriz[currentLine][currentColumn],'linha', compareLine, " ", matriz[compareLine][currentColumn])
+                print(result)
+                resultLine.append(result)
+                print("result line = ", resultLine)
                 currentColumn +=1
             compareLine +=1
         currentLine +=1
+    return isValida;
 
 ##################################################################################################
+def negativeLine(lineMatriz):
+    counter = 0
+    while counter < len(lineMatriz):
+        lineMatriz[counter] = lineMatriz[counter]-1
+        counter += 1
+    return lineMatriz
 
 # Our matriz
 
+def setZeroInColumn(matriz, currentColumn):
+    currentLine = 0
+    matrizAux = matriz.copy() 
+    compareLine = negativeLine(matrizAux[currentColumn -1])
+    while currentLine < len(matriz):
+        if matriz[currentLine][currentColumn] != 0:
+#            matriz[compareLine] = matriz[line] -1
+#            print("compare line: ", compareLine)
+            print("linha que divide: ", compareLine)
+            print("minha matriz: ", matriz)
+            print("item da coluna pra ser dividid0 = ", matriz[currentLine][currentColumn])
+        currentLine+=1
 
 # Check if it is possible
 def hasZeroInDiagonal (matriz):
@@ -68,6 +96,32 @@ def hasZeroInDiagonal (matriz):
         posicao+=1
     return qtdDeZeros>0
   
+    
+def isMatrizValida(matriz):
+    #todas as linhas com a mesma quantidade de coluna
+    currentLine = 0
+    compareLine = 0
+    currentColumn = 0
+    resultLine = [] 
+    isValida = True
+    while currentLine < len(matriz): #percorre as linhas
+        compareLine = currentLine + 1
+        while compareLine < len(matriz):
+            currentColumn = 0
+            resultLine = []
+            while currentColumn < (len(matriz[currentLine])-1): # percorre coluna da linha atual
+                if matriz[compareLine][currentColumn] == 0: 
+                    result = 999999
+                else:
+                    result = matriz[currentLine][currentColumn] / matriz[compareLine][currentColumn]
+                print(currentLine, ' linha ', matriz[currentLine][currentColumn],'linha', compareLine, " ", matriz[compareLine][currentColumn])
+                print(result)
+                resultLine.append(result)
+                print("result line = ", resultLine)
+                currentColumn +=1
+            compareLine +=1
+        currentLine +=1
+    return isValida;
 # Make the logic: make the main diagonal number became 1, and after this, set zero in all the column
 def setOneInMainDiagonal (line,matriz):
     divisor=matriz[line][line] # Get our main diagonal number
