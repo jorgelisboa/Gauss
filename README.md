@@ -24,3 +24,5 @@ System to solve systems of linear equations with any number of equations by the 
 - if diagonalHasZero() { changeLines(matriz, matrizLine) } else { divideLine(matrizLine, divider) }
 - startLoop()
 - divideLine()
+
+Após colocar 1 na diagonal principal, vá para a próxima linha, pegue o primeiro número (se não for 0) e multiplique por -1, multiplique a linha que você colocou 1 pelo número que você negativou. Depois, vá para a linha que deseja implantar 0 e some-as. Faça isso até a útlima linha.
