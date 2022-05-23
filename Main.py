@@ -70,6 +70,45 @@ def isMatrizValida(matriz):
                     result = 999999
                 else:
                     result = matriz[currentLine][currentColumn] / matriz[compareLine][currentColumn]
+                resultLine.append(result)
+                currentColumn +=1
+            compareLine +=1
+            print("result line = ", resultLine)
+            if not (compareLineMatriz(resultLine)):
+                isValida = False
+                break
+        currentLine +=1
+    return isValida;
+
+def compareLineMatriz(lineMatriz):
+    counter = 0
+    equal = 0
+    isValida = True
+    while counter < len(lineMatriz):
+        if ( lineMatriz[0] == lineMatriz[counter]):
+            equal+=1
+        counter += 1
+    if equal == (len(lineMatriz)):
+        isValida = False
+    return isValida
+
+def isMatrizValida(matriz):
+    #todas as linhas com a mesma quantidade de coluna
+    currentLine = 0
+    compareLine = 0
+    currentColumn = 0
+    resultLine = [] 
+    isValida = True
+    while currentLine < len(matriz): #percorre as linhas
+        compareLine = currentLine + 1
+        while compareLine < len(matriz):
+            currentColumn = 0
+            resultLine = []
+            while currentColumn < (len(matriz[currentLine])-1): # percorre coluna da linha atual
+                if matriz[compareLine][currentColumn] == 0: 
+                    result = 999999
+                else:
+                    result = matriz[currentLine][currentColumn] / matriz[compareLine][currentColumn]
                 print(currentLine, ' linha ', matriz[currentLine][currentColumn],'linha', compareLine, " ", matriz[compareLine][currentColumn])
                 print(result)
                 resultLine.append(result)
