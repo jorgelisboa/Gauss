@@ -1,3 +1,19 @@
+def carregaMatriz (nomeArq):
+    arq     = open(nomeArq,"r")
+    qtdLins = int (arq.readline())
+    
+    ret = []
+    for lin in range(qtdLins):
+        texto = arq.readline().split()
+        
+        linha = []
+        for col in range(qtdLins+1): linha.append(float(texto[col])) 
+            
+        ret.append(linha)
+        
+    arq.close()
+    return ret
+
 # função auxiliar  recursiva que, de fato, gera as permutacoes
 # NÃO USE DIRETAMENTE ESTA FUNÇÃO; USE A FUNÇÃO permutacoes
 # recebe uma lista com os valores a serem permutados (linha),
@@ -159,6 +175,7 @@ def showMatriz(matriz):
 # Check if is possible to resolve the system
 matriz = [[0,3,2,28], [4,0,2,24], [2,3,0,16]]
 def startApp(matriz):
+    matriz = carregaMatriz("test.txt")
     isSystemPossible = True
     if isSystemPossible:
         if hasZeroInDiagonal(matriz):
