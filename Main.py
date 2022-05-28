@@ -156,7 +156,9 @@ def setZeroInColumn(matriz, currentLine):
         if matriz[count][currentColumn] != 0 and count != currentColumn:
             compareLine = negativeLine(copyMatriz(matriz[currentColumn]),matriz[count][currentColumn])
             sumLineMatriz(matriz[count], compareLine)
+            matriz[count] = sumLineMatriz(matriz[count], compareLine)
         count+=1
+    print("setZeroinColum", matriz)
 
 # Check if it is possible
 def hasZeroInDiagonal (matriz):
@@ -236,16 +238,18 @@ def startApp(matriz):
     matriz = carregaMatriz("test.txt")
 
     if isSystemPossible(matriz):
-        showMatriz(matriz)
+        print(matriz)
         if hasZeroInDiagonal(matriz):
+            print("entrooou")
             while hasZeroInDiagonal(matriz):
-                changeLines(matriz)
+                #changeLines(matriz)
+                print("change line é aqui: ", changeLines(matriz))
                 matriz = changeLines(matriz)
                 resolveSystem(matriz)
-                showMatriz(matriz)
+                print(matriz)
         else:
             resolveSystem(matriz)
-            showMatriz(matriz)
+            print(matriz)
     else:
         print("This system is not possible to be resolved")
             
