@@ -64,7 +64,7 @@ def comoSeLivrarDeZerosNaDiagonal (m):
 
 # "Divide" os pares de linha - (Já tá fazendo os pares, falta dividor)
 
-def isMatrizValida(matriz):
+def isSystemPossible(matriz):
     #todas as linhas com a mesma quantidade de coluna
     currentLine = 0
     compareLine = 0
@@ -228,28 +228,25 @@ def resolveSystem(matriz):
 def showMatriz(matriz):
     counter = 0
     while counter < len(matriz):
-        print(matriz[[counter]])
+        print(matriz[counter]+"\n")
         
 # Check if is possible to resolve the system
 matriz = [[1,0,1.5,6], [2,3,0,16], [0,3,2,28]]
 def startApp(matriz):
     matriz = carregaMatriz("test.txt")
-    isSystemPossible = True
-    if isSystemPossible:
+
+    if isSystemPossible(matriz):
+        showMatriz(matriz)
         if hasZeroInDiagonal(matriz):
             while hasZeroInDiagonal(matriz):
                 changeLines(matriz)
                 matriz = changeLines(matriz)
                 resolveSystem(matriz)
-                #showMatriz(matriz)
+                showMatriz(matriz)
         else:
             resolveSystem(matriz)
-            #showMatriz(matriz)
+            showMatriz(matriz)
     else:
         print("This system is not possible to be resolved")
             
 startApp(matriz)
-#print(matriz)
-#print("matrix aux" , negativeLine(copyMatriz(matriz[0]),2))
-print(setZeroInColumn(matriz, 1))
-#print(sumLineMatriz(matriz[1], negativeLine(copyMatriz(matriz[1]),matriz[0][1])))
