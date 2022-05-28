@@ -15,6 +15,14 @@ def carregaMatriz (nomeArq):
     return ret
 
 def copyMatriz(matriz):
+    matrizAux = []
+    count = 0
+    while count < len(matriz):
+        matrizAux.append(matriz[count])
+        count+=1
+
+    return matrizAux
+
 #loop
 
 # função auxiliar  recursiva que, de fato, gera as permutacoes
@@ -122,27 +130,33 @@ def isMatrizValida(matriz):
     return isValida;
 
 ##################################################################################################
-def negativeLine(lineMatriz):
+def negativeLine(lineMatriz, negativeNumber):
     counter = 0
     while counter < len(lineMatriz):
-        lineMatriz[counter] = lineMatriz[counter]*-1
+        lineMatriz[counter] = lineMatriz[counter]*-negativeNumber
         counter += 1
     return lineMatriz
 
 # Our matriz
 
-def setZeroInColumn(matriz, currentColumn):
-    currentLine = 0
-    matrizAux = matriz.copy() 
-    compareLine = negativeLine(matrizAux[currentColumn -1])
-    while currentLine < len(matriz):
-        if matriz[currentLine][currentColumn] != 0:
-#            matriz[compareLine] = matriz[line] -1
-#            print("compare line: ", compareLine)
-            print("linha que divide: ", compareLine)
-            print("minha matriz: ", matriz)
-            print("item da coluna pra ser dividid0 = ", matriz[currentLine][currentColumn])
-        currentLine+=1
+def sumLineMatriz(line_1, line_2):
+    count = 0
+    sum = []
+    while count  < len(line_1):
+        #sum = (line_1[count] + line_2[count])
+        sum.append(line_1[count] + line_2[count])
+        count+=1
+    print ("sum valor", sum)
+    return sum
+
+def setZeroInColumn(matriz, currentLine):
+    count = 0
+    currentColumn = currentLine
+    while count < len(matriz):
+        if matriz[count][currentColumn] != 0 and count != currentColumn:
+            compareLine = negativeLine(copyMatriz(matriz[currentColumn]),matriz[count][currentColumn])
+            sumLineMatriz(matriz[count], compareLine)
+        count+=1
 
 # Check if it is possible
 def hasZeroInDiagonal (matriz):
@@ -217,7 +231,7 @@ def showMatriz(matriz):
         print(matriz[[counter]])
         
 # Check if is possible to resolve the system
-matriz = [[0,3,2,28], [4,0,2,24], [2,3,0,16]]
+matriz = [[1,0,1.5,6], [2,3,0,16], [0,3,2,28]]
 def startApp(matriz):
     matriz = carregaMatriz("test.txt")
     isSystemPossible = True
@@ -235,3 +249,7 @@ def startApp(matriz):
         print("This system is not possible to be resolved")
             
 startApp(matriz)
+#print(matriz)
+#print("matrix aux" , negativeLine(copyMatriz(matriz[0]),2))
+print(setZeroInColumn(matriz, 1))
+#print(sumLineMatriz(matriz[1], negativeLine(copyMatriz(matriz[1]),matriz[0][1])))
