@@ -206,7 +206,9 @@ def resolveSystem(matriz):
     currentLine = 0
     while currentLine < len(matriz):
         setOneInMainDiagonal(currentLine, matriz)
-        #setZeroInColumn(matriz, currentLine)
+        setZeroInColumn(matriz, currentLine)
+        if hasZeroInDiagonal(matriz):
+            changeLines(matriz)
         currentLine += 1
         
 def showMatriz(matriz):
