@@ -84,11 +84,11 @@ def isSystemPossible(matriz):
                 resultLine.append(result)
                 currentColumn +=1
             compareLine +=1
-            print("result line = ", resultLine)
             if not (compareLineMatriz(resultLine)):
                 isValida = False
                 break
         currentLine +=1
+    print("Is system possible? ", isValida)
     return isValida;
 
 def compareLineMatriz(lineMatriz):
@@ -143,10 +143,8 @@ def sumLineMatriz(line_1, line_2):
     count = 0
     sum = []
     while count  < len(line_1):
-        #sum = (line_1[count] + line_2[count])
         sum.append(line_1[count] + line_2[count])
         count+=1
-    print ("sum valor", sum)
     return sum
 
 def setZeroInColumn(matriz, currentLine):
@@ -188,10 +186,10 @@ def isMatrizValida(matriz):
                     result = 999999
                 else:
                     result = matriz[currentLine][currentColumn] / matriz[compareLine][currentColumn]
-                print(currentLine, ' linha ', matriz[currentLine][currentColumn],'linha', compareLine, " ", matriz[compareLine][currentColumn])
-                print(result)
+                #print(currentLine, ' linha ', matriz[currentLine][currentColumn],'linha', compareLine, " ", matriz[compareLine][currentColumn])
+                #print(result)
                 resultLine.append(result)
-                print("result line = ", resultLine)
+                #print("result line = ", resultLine)
                 currentColumn +=1
             compareLine +=1
         currentLine +=1
@@ -202,8 +200,8 @@ def setOneInMainDiagonal (line,matriz):
     col=0
     while col<=len(matriz): # Will divide each item from our line for our main diagonal number
         matriz[line][col]/=divisor
-        print("setOneInMainDiagonal: "+str(matriz))
         col+=1
+    print("setOneInMainDiagonal: "+str(matriz))
     return matriz
 
 
@@ -225,32 +223,44 @@ def resolveSystem(matriz):
         setZeroInColumn(matriz, currentLine)
         if hasZeroInDiagonal(matriz):
             changeLines(matriz)
+        formatOutput()
         currentLine += 1
         
 def showMatriz(matriz):
     counter = 0
     while counter < len(matriz):
-        print(matriz[counter]+"\n")
+        print(str(matriz[counter]))
+        counter+=1
+
+def formatOutput():
+    print("")
         
 # Check if is possible to resolve the system
-matriz = [[1,0,1.5,6], [2,3,0,16], [0,3,2,28]]
+#matriz = [[1,0,1.5,6], [2,3,0,16], [0,3,2,28]]
+
 def startApp(matriz):
-    matriz = carregaMatriz("test.txt")
 
     if isSystemPossible(matriz):
-        print(matriz)
+        formatOutput()
+        showMatriz(matriz)
+        formatOutput()
         if hasZeroInDiagonal(matriz):
-            print("entrooou")
+            formatOutput()
             while hasZeroInDiagonal(matriz):
-                #changeLines(matriz)
-                print("change line é aqui: ", changeLines(matriz))
+                print("change line: ",changeLines(matriz))
+                formatOutput()
                 matriz = changeLines(matriz)
+                formatOutput()
                 resolveSystem(matriz)
-                print(matriz)
+                formatOutput()
+                showMatriz(matriz)
         else:
             resolveSystem(matriz)
-            print(matriz)
+            showMatriz(matriz)
     else:
         print("This system is not possible to be resolved")
             
+matriz = carregaMatriz("test.txt")
+
 startApp(matriz)
+#showMatriz(matriz)
